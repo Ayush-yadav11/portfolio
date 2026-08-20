@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #FFF9EF;
+  --color-paper-alt: #FFE9BD;
+  --color-ink: #1A1A1A;
+  --color-ink-soft: #1A1A1A;
+  --color-accent: #FF5A36;
+  --color-accent-soft: #DCE3FA;
+  --color-accent-dark: #1B2F8C;
+
+  /* marker / crayon box */
+  --color-marker-yellow: #F7C948;
+  --color-marker-blue: #4A7BD9;
+  --color-marker-green: #3E9B57;
+  --color-marker-pink: #EE8FB4;
+  --color-marker-purple: #9B7ED9;
+
+  /* sticky notes */
+  --color-note-yellow: #FFF3C9;
+  --color-note-pink: #FFE3EE;
+  --color-note-blue: #E3ECFF;
+  --color-note-green: #E3F5E6;
+
+  --font-display: 'Caveat', 'Comic Sans MS', cursive;
+  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
+  --font-body: 'Patrick Hand', 'Comic Sans MS', cursive;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='26'%20height='26'%20viewBox='0%200%2026%2026'%3E%3Cpath%20d='M5%2021l1.2-4.6L18.5%204.1a2.3%202.3%200%20013.3%203.3L9.6%2019.8%205%2021z'%20fill='%23FFF9EF'%20stroke='%231A1A1A'%20stroke-width='2'%20stroke-linejoin='round'/%3E%3Cpath%20d='M17.1%205.6l3.2%203.2'%20stroke='%231A1A1A'%20stroke-width='2'/%3E%3C/svg%3E") 3 23,
+    auto;
+}
+
+a, button, [role='button'], label, summary {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.grain-bg {
+  background-image: radial-gradient(circle, rgba(26, 26, 26, 0.07) 1.1px, transparent 1.3px);
+  background-size: 20px 20px;
+}
+
+/* graph paper (sketchbook page) */
+.grid-paper {
+  background-image:
+    linear-gradient(rgba(74, 123, 217, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 123, 217, 0.14) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* ruled notebook page with red margin */
+.notebook {
+  background-color: #fffdf4;
+  background-image:
+    linear-gradient(90deg, transparent 0 44px, rgba(255, 90, 54, 0.4) 44px 47px, transparent 47px),
+    repeating-linear-gradient(180deg, transparent 0 30px, rgba(74, 123, 217, 0.22) 30px 32px);
+}
+
+::selection {
+  background: var(--color-marker-yellow);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ---- hand-drawn borders (wonky corner radii) ---- */
+.sketch-a {
+  border: 2.5px solid var(--color-ink);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+.sketch-b {
+  border: 2.5px solid var(--color-ink);
+  border-radius: 15px 225px 15px 255px / 225px 15px 255px 15px;
+}
+.sketch-c {
+  border: 2px solid var(--color-ink);
+  border-radius: 125px 12px 190px 18px / 16px 205px 18px 200px;
+}
+.sketch-chip {
+  border: 1.8px solid var(--color-ink);
+  border-radius: 120px 8px 110px 10px / 9px 100px 10px 120px;
+}
+
+/* ---- washi tape ---- */
+.tape {
+  position: absolute;
+  width: 92px;
+  height: 26px;
+  background: rgba(250, 222, 130, 0.5);
+  box-shadow: 0 1px 2px rgba(26, 26, 26, 0.08);
+  clip-path: polygon(
+    2% 0, 98% 0, 100% 10%, 97% 22%, 100% 36%, 97% 50%,
+    100% 64%, 97% 78%, 100% 90%, 98% 100%, 2% 100%, 0 90%,
+    3% 78%, 0 64%, 3% 50%, 0 36%, 3% 22%, 0 10%
+  );
+}
+
+/* ---- sticky note ---- */
+.sticky-note {
+  border: 1.6px solid rgba(26, 26, 26, 0.75);
+  border-radius: 6px 14px 8px 12px / 12px 8px 14px 6px;
+  box-shadow: 3px 5px 12px rgba(26, 26, 26, 0.14);
+}
+
+/* ---- highlighter marks ---- */
+.hl {
+  padding: 0.02em 0.32em;
+  margin: 0 -0.14em;
+  border-radius: 0.4em 0.6em 0.5em 0.7em / 0.6em 0.4em 0.7em 0.5em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.hl-yellow { background: linear-gradient(100deg, rgba(247, 201, 72, 0) 0.8%, rgba(247, 201, 72, 0.7) 4%, rgba(247, 201, 72, 0.6) 96%, rgba(247, 201, 72, 0) 99.2%); }
+.hl-blue   { background: linear-gradient(100deg, rgba(74, 123, 217, 0) 0.8%, rgba(74, 123, 217, 0.45) 4%, rgba(74, 123, 217, 0.38) 96%, rgba(74, 123, 217, 0) 99.2%); }
+.hl-pink   { background: linear-gradient(100deg, rgba(238, 143, 180, 0) 0.8%, rgba(238, 143, 180, 0.6) 4%, rgba(238, 143, 180, 0.5) 96%, rgba(238, 143, 180, 0) 99.2%); }
+.hl-green  { background: linear-gradient(100deg, rgba(62, 155, 87, 0) 0.8%, rgba(62, 155, 87, 0.45) 4%, rgba(62, 155, 87, 0.38) 96%, rgba(62, 155, 87, 0) 99.2%); }
+.hl-orange { background: linear-gradient(100deg, rgba(255, 90, 54, 0) 0.8%, rgba(255, 90, 54, 0.42) 4%, rgba(255, 90, 54, 0.35) 96%, rgba(255, 90, 54, 0) 99.2%); }
+
+/* ---- squiggle bottom border (nav) ---- */
+.squiggle-b {
+  position: relative;
+}
+.squiggle-b::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 9px;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='90'%20height='9'%20viewBox='0%200%2090%209'%3E%3Cpath%20d='M0%205%20Q7.5%200%2015%205%20T30%205%20T45%205%20T60%205%20T75%205%20T90%205'%20fill='none'%20stroke='%231A1A1A'%20stroke-width='2.4'%20stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: 90px 9px;
+}
+
+/* ---- floating doodles ---- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-9px) rotate(calc(var(--rot, 0deg) + 2.5deg)); }
+}
+.floaty {
+  animation: floaty var(--dur, 5s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+.wiggle-hover:hover {
+  animation: wiggle 0.4s ease-in-out;
+}
+
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+.bounce-soft {
+  animation: bounce-soft 1.6s ease-in-out infinite;
+}
+
+/* ---- hero illustration draws itself ---- */
+@keyframes draw-in {
+  to { stroke-dashoffset: 0; }
+}
+.self-draw > * {
+  stroke-dasharray: 560;
+  stroke-dashoffset: 560;
+  animation: draw-in 0.9s ease forwards;
+}
+.self-draw > :nth-child(1) { animation-delay: 0.15s; }
+.self-draw > :nth-child(2) { animation-delay: 0.22s; }
+.self-draw > :nth-child(3) { animation-delay: 0.29s; }
+.self-draw > :nth-child(4) { animation-delay: 0.36s; }
+.self-draw > :nth-child(5) { animation-delay: 0.43s; }
+.self-draw > :nth-child(6) { animation-delay: 0.50s; }
+.self-draw > :nth-child(7) { animation-delay: 0.57s; }
+.self-draw > :nth-child(8) { animation-delay: 0.64s; }
+.self-draw > :nth-child(9) { animation-delay: 0.71s; }
+.self-draw > :nth-child(10) { animation-delay: 0.78s; }
+.self-draw > :nth-child(11) { animation-delay: 0.85s; }
+.self-draw > :nth-child(12) { animation-delay: 0.92s; }
+.self-draw > :nth-child(13) { animation-delay: 0.99s; }
+.self-draw > :nth-child(14) { animation-delay: 1.06s; }
+.self-draw > :nth-child(15) { animation-delay: 1.13s; }
+.self-draw > :nth-child(16) { animation-delay: 1.20s; }
+.self-draw > :nth-child(17) { animation-delay: 1.27s; }
+.self-draw > :nth-child(18) { animation-delay: 1.34s; }
+.self-draw > :nth-child(19) { animation-delay: 1.41s; }
+.self-draw > :nth-child(20) { animation-delay: 1.48s; }
+.self-draw > :nth-child(n+21) { animation-delay: 1.55s; }
+
+/* ---- marching dashes (flight paths) ---- */
+@keyframes dash-march {
+  to { stroke-dashoffset: -26; }
+}
+.dash-march {
+  animation: dash-march 1.4s linear infinite;
+}
+
+/* ---- doodle marquee divider ---- */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 2.6rem;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
